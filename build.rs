@@ -1542,6 +1542,14 @@ fn main() {
         .blocklist_function("y0l")
         .blocklist_function("y1l")
         .blocklist_function("ynl")
+        .blocklist_type("^Vk[A-Z].*") 
+        .blocklist_function("^vk[A-Z].*") 
+        .blocklist_type("^PFN_vk[A-Z].*") 
+        .blocklist_type("^StdVideo.*") 
+        .blocklist_var("^VK_.*") 
+        .blocklist_var("^STD_VIDEO_.*") 
+        .blocklist_var("^vulkan_video_codec_.*") 
+        .blocklist_var("^VULKAN_VIDEO_CODEC_.*") 
         .opaque_type("__mingw_ldbl_type_t")
         .default_enum_style(bindgen::EnumVariation::Rust {
             non_exhaustive: env::var("CARGO_FEATURE_NON_EXHAUSTIVE_ENUMS").is_ok(),
@@ -1669,6 +1677,12 @@ fn main() {
         maybe_search_include(&include_paths, "libavutil/hwcontext_drm.h")
     {
         builder = builder.header(hwcontext_drm_header);
+    }
+
+    if let Some(hwcontext_vulkan_header) =
+        maybe_search_include(&include_paths, "libavutil/hwcontext_vulkan.h")
+    {
+        builder = builder.header(hwcontext_vulkan_header);
     }
 
     // Finish the builder and generate the bindings.

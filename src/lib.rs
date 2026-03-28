@@ -11,7 +11,20 @@
 #![allow(unpredictable_function_pointer_comparisons)]
 #![allow(unnecessary_transmutes)]
 
+extern crate ash;
 extern crate libc;
+
+use ash::vk::{
+    AccessFlags as VkAccessFlagBits, Device as VkDevice, DeviceMemory as VkDeviceMemory,
+    Format as VkFormat, Image as VkImage, ImageCreateFlags as VkImageCreateFlags,
+    ImageLayout as VkImageLayout, ImageTiling as VkImageTiling,
+    ImageUsageFlags as VkImageUsageFlagBits, Instance as VkInstance,
+    MemoryPropertyFlags as VkMemoryPropertyFlagBits, PFN_vkGetInstanceProcAddr,
+    PhysicalDevice as VkPhysicalDevice, QueueFlags as VkQueueFlagBits, Semaphore as VkSemaphore,
+    VideoCodecOperationFlagsKHR as VkVideoCodecOperationFlagBitsKHR,
+};
+type VkAllocationCallbacks = ash::vk::AllocationCallbacks<'static>;
+type VkPhysicalDeviceFeatures2 = ash::vk::PhysicalDeviceFeatures2<'static>;
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 

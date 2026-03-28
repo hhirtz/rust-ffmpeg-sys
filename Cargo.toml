@@ -17,6 +17,7 @@ doctest = false
 
 [dependencies]
 libc = "0.2"
+ash = "0.38.0"
 
 [build-dependencies]
 num_cpus   = "1.17"
